@@ -47,7 +47,7 @@ public class HttpOutboundHandler {
         long keepAliveTime = 1000;
         int queueSize = 2048;
         RejectedExecutionHandler handler = new ThreadPoolExecutor.CallerRunsPolicy();//.DiscardPolicy();
-        proxyService = new ThreadPoolExecutor(cores, cores,
+        proxyService = new ThreadPoolExecutor(2 * (cores + 1), 4 * (cores + 1),
                 keepAliveTime, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<>(queueSize),
                 new NamedThreadFactory("proxyService"), handler);
         
